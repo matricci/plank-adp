@@ -1,5 +1,9 @@
 # Scripts to match the color of plank with the background, to simulate the blur, but is lighweight.
 
+# DEPENDS 
+	Python3 Pillow (python3-pil)
+	Python3 (Of course, genius)
+
 # BEFORE INSTALL
 	Only works with MATE and Gnome. I'm working on Cinnamon and Patheon Shell. Stay tunned!
 
