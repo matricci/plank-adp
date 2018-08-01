@@ -1,0 +1,3 @@
+#!/bin/bash 
+ # for gnome, the dconf path is org/gnome/desktop/background/picture-uri
+ 
