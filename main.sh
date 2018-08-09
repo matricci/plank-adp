@@ -10,7 +10,13 @@ fi
 if [ "$XDG_CURRENT_DESKTOP" = "X-Cinnamon" ]; then
 	name=$(dconf read /org/cinnamon/desktop/background/picture-uri | tr -d \' | cut -c 8-)
 fi	
-cp -v $name $PWD/wallpaper.jpg
+if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] ; then 
+	sleep 0.5
+	name=$(dconf read /org/gnome/desktop/background/picture-uri | tr -d \' | cut -c 8-)
+	sleep 0.5
+fi
+
+cp $name $PWD/wallpaper.jpg
 python get_color.py 
-cp -v dock.theme ~/.local/share/plank/themes/Wallpaper/
+cp dock.theme ~/.local/share/plank/themes/Wallpaper/
 echo $name > .name.config

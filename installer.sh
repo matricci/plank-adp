@@ -1,4 +1,8 @@
 #!/bin/bash 
 
-mkdir -v /usr/share/plank/themes/Wallpaper ## Create the theme directory 
+mkdir -v ~/.local/share/plank/themes/Wallpaper ## Create the theme directory 
+if [ -e /usr/bin/python3 ]; then 
+	echo "Python3 installed"
+fi
+
 
