@@ -1,8 +1,23 @@
 #!/bin/bash 
 
-mkdir -v ~/.local/share/plank/themes/Wallpaper ## Create the theme directory 
+if [ -e ~/.local/share/plank/themes/Wallpaper ]; then 
+	echo "Theme diretory is present"
+else 
+	mkdir -v ~/.local/share/plank/themes/Wallpaper 
+fi
+#
+# Check depends
 if [ -e /usr/bin/python3 ]; then 
 	echo "Python3 installed"
+else 
+	echo "Install Python before try to run again!"
 fi
-
+if [ -e /usr/bin/pip ] ; then 
+	echo "Python-pip installed!"
+else
+	echo "Please install python-pip"
+fi
+#
+# Install Pillow 
+pip install Pillow 
 
