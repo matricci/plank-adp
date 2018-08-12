@@ -15,6 +15,9 @@ if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] ; then
 	name=$(dconf read /org/gnome/desktop/background/picture-uri | tr -d \' | cut -c 8-)
 	sleep 0.5
 fi
+if [ "$XDG_SESSION_DESKTOP" = "pantheon" ]; then
+        name=$(dconf read /org/gnome/desktop/background/picture-uri | tr -d \' | cut -c 8-)
+fi
 
 cp $name $PWD/wallpaper.jpg
 python get_color.py 

@@ -20,6 +20,9 @@ fi
 if [ "$XDG_CURRENT_DESKTOP" = "X-Cinnamon" ]; then
 	name=$(dconf read /org/cinnamon/desktop/background/picture-uri | tr -d \' | cut -c 8-)
 fi
+if [ "$XDG_SESSION_DESKTOP" = "pantheon" ]; then
+        name=$(dconf read /org/gnome/desktop/background/picture-uri | tr -d \' | cut -c 8-)
+fi
 sleep 0.3s
 	if [ "$(cat $name | md5sum)" != "$(cat wallpaper.jpg | md5sum)" ]; then
 	bash main.sh
