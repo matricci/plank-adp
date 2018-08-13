@@ -11,11 +11,13 @@ if [ -e /usr/bin/python3 ]; then
 	echo "Python3 installed"
 else 
 	echo "Install Python before try to run again!"
+	exit
 fi
 if [ -e /usr/bin/pip ] ; then 
 	echo "Python-pip installed!"
 else
 	echo "Please install python-pip"
+	exit
 fi
 #
 # Install Pillow 
