@@ -15,8 +15,10 @@ In case of troubles, or any doubts just send me a e-mail to "matricci2011@hotmai
 		
 ## Known Issues
 Files with spaces will not work!
+
 The daemon script isn't wonderfull.
-The installer 
+
+The installer is buggy
 
 ## Screenshot
 ![Screenshot](screenshot.png)
