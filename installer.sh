@@ -22,7 +22,6 @@ fi
 #
 # Install Pillow 
 pip install Pillow 
-#
 # Change the theme to "Wallpaper"
 dconf write /net/launchpad/plank/docks/dock1/theme "'Wallpaper'" 
 
