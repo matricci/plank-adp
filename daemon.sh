@@ -23,6 +23,13 @@ fi
 if [ "$XDG_SESSION_DESKTOP" = "pantheon" ]; then
         name=$(dconf read /org/gnome/desktop/background/picture-uri | tr -d \' | cut -c 8-)
 fi
+if [ "$XDG_SESSION_DESKTOP" = "xubuntu" ] ;then
+        name=$( xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path)
+fi
+if [ "$XDG_SESSION_DESKTOP" = "xfce" ] ;then
+        name=$( xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path)
+fi
+#
 sleep 0.3s
 	if [ "$(cat $name | md5sum)" != "$(cat wallpaper.jpg | md5sum)" ]; then
 	bash main.sh
