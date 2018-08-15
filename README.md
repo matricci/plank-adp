@@ -7,7 +7,7 @@
 	Just a little pacience (just kiddin')
 
 ## BEFORE INSTALL
-Works with MATE, Gnome, Cinnamon, Patheon Shell. Stay tunned! If you want it to work on your favorite DE, consider contribute with the code! 
+Works with MATE, Gnome, Cinnamon, Patheon Shell and XFCE4. Stay tunned! If you want it to work on your favorite DE, consider contribute with the code! 
 
 ## MANUAL
 To install, run the "installer.sh". The first time, you will need to run the "main.sh" to setup all te variables and configuration, after you can run "daemon.sh", this script will run just like a daemon, watching the change of the wallpaper, to automate the process
