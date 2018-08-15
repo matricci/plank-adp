@@ -8,14 +8,14 @@ TopRoundness=6
 BottomRoundness=0
 #The thickness (in pixels) of lines drawn.
 LineWidth=1
-#The 110;;93;;68;;235 (RGBA) of the outer stroke.
-OuterStrokeColor=110;;93;;68;;235
-#The starting 110;;93;;68;;235 (RGBA) of the fill gradient.
-FillStartColor=110;;93;;68;;235
-#The ending 110;;93;;68;;235 (RGBA) of the fill gradient.
-FillEndColor=110;;93;;68;;235
-#The 110;;93;;68;;235 (RGBA) of the inner stroke.
-InnerStrokeColor=110;;93;;68;;235
+#The 197;;164;;74;;235 (RGBA) of the outer stroke.
+OuterStrokeColor=197;;164;;74;;235
+#The starting 197;;164;;74;;235 (RGBA) of the fill gradient.
+FillStartColor=197;;164;;74;;235
+#The ending 197;;164;;74;;235 (RGBA) of the fill gradient.
+FillEndColor=197;;164;;74;;235
+#The 197;;164;;74;;235 (RGBA) of the inner stroke.
+InnerStrokeColor=197;;164;;74;;235
 
 [PlankDockTheme]
 #The padding on the left/right dock edges, in tenths of a percent of IconSize.
@@ -56,7 +56,7 @@ GlowSize=30
 GlowTime=10000
 #The time (in ms) of each pulse of the hidden-dock urgent glow.
 GlowPulseTime=800
-#The hue-shift (-180 to 180) of the urgent indicator 110;;93;;68;;235.
+#The hue-shift (-180 to 180) of the urgent indicator 197;;164;;74;;235.
 UrgentHueShift=0
 #The time (in ms) to move an item to its new position or its addition/removal to/from the dock.
 ItemMoveTime=150
