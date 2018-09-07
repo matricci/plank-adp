@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Plank-adp
+Comment=
+Exec=plank-adp
+Icon=/usr/share/icons/hicolor/128x128/plank-adp.png
+Terminal=False
+Version=1.0
