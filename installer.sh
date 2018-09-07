@@ -7,8 +7,8 @@ else
 fi
 #
 # Check depends
-if [ -e /usr/bin/python3 ]; then 
-	echo "Python3 installed"
+if [ -e /usr/bin/python ]; then 
+	echo "Python-pip installed"
 else 
 	echo "Install Python before try to run again!"
 	exit
@@ -19,10 +19,32 @@ else
 	echo "Please install python-pip"
 	exit
 fi
+
+if [ -e /usr/bin/dconf ] ; then
+	echo "Dconf-tools installed!"
+else
+	echo "Please install dconf-tools"
+	exit
+fi
+
 #
 # Install Pillow 
 pip install Pillow 
+pip install pycairo
+pip install PyGobject
+#
+path="/usr/share/plank-adp"
+sudo mkdir $path
+sudo cp -v form1.glade $path 
+sudo cp -v form1.py $path
+sudo cp -v base.theme $path
+sudo cp -v plank-adp /usr/bin/
+sudo cp -v plank-adp.desktop /usr/share/applications/
+sudo cp -v plank-adp.png /usr/share/icons/hicolor/128x128/
+sudo chmod a=+rwx $path
+
 # Change the theme to "Wallpaper"
-dconf write /net/launchpad/plank/docks/dock1/theme "'Wallpaper'" 
+dconf write /net/launchpad/plank/docks/dock1/theme "'Wallpaper'"
+
 
 
