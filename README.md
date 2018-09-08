@@ -8,7 +8,7 @@
 	Python Pillow
 
 ## BEFORE INSTALL
-Works with MATE, Gnome, Cinnamon, Patheon Shell and XFCE4. Stay tunned! If you want it to work on your favorite DE, consider contribute with the code! 
+To run, you will need Gtk3.18. Only works with MATE, Gnome and Patheon Shell (ElementaryOS).
 
 ## MANUAL
 To install, run the "installer.sh".
