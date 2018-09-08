@@ -4,7 +4,7 @@
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkFileFilter" id="filefilter1">
     <mime-types>
-      <mime-type>image/png</mime-type>
+      <mime-type>image</mime-type>
     </mime-types>
     <patterns>
       <pattern>*.png</pattern>
@@ -13,12 +13,24 @@
   </object>
   <object class="GtkWindow" id="Window">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Plank-adp</property>
     <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <property name="icon">../../../../usr/share/icons/hicolor/128x128/apps/plank-adp.png</property>
     <property name="gravity">center</property>
     <signal name="destroy" handler="on_Window_destroy" swapped="no"/>
-    <child>
-      <placeholder/>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="headerbar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title" translatable="yes">Plank-adp</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
     </child>
     <child>
       <object class="GtkBox">
@@ -75,12 +87,8 @@
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="top_attach">1</property>
-                <property name="height">3</property>
+                <property name="top_attach">2</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
             <child>
               <placeholder/>
@@ -128,7 +136,21 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="cancelbutton">
+                <property name="label" translatable="yes">Cancelar</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="margin_left">10</property>
+                <property name="margin_right">10</property>
+                <property name="margin_top">2</property>
+                <property name="margin_bottom">10</property>
+                <signal name="clicked" handler="cancelbutton_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
             </child>
             <child>
               <placeholder/>

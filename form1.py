@@ -25,6 +25,9 @@ class Handler():
         self.get_theme_color()
         self.set_theme()
 
+    def cancelbutton_clicked(self, button):
+        Gtk.main_quit()
+
     def get_theme_color(self):
         filename = filechooser.get_uri()
         if(filename == "None"):
