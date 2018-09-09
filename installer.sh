@@ -29,9 +29,9 @@ fi
 # 
 # 
 # Install Pillow 
-# pip install Pillow 
-# pip install pycairo
-# pip install PyGobject
+pip install Pillow 
+pip install pycairo
+pip install PyGobject
 
 if [ $LANG == "pt_BR.UTF-8" ];then 
 	cp -v form1.glade.pt_BR form1.glade
