@@ -20,6 +20,12 @@ class Handler():
     def filechooser_file_activated(self, widget):
         pass
 
+    def aboutbutton_clicked(self, widget):
+        aboutwin.show()
+
+    def closebutton_clicked(self, button):
+        aboutwin.hide()
+
     def button_clicked(self, button):
         self.set_wallpaper()
         self.get_theme_color()
@@ -83,5 +89,6 @@ builder.add_from_file("form1.glade")
 builder.connect_signals(Handler())
 window = builder.get_object("Window")
 filechooser = builder.get_object("filechooser")
+aboutwin = builder.get_object("about_window")
 window.show_all()
 Gtk.main()

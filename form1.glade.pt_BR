@@ -20,7 +20,7 @@
             <property name="can_focus">False</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
-            <property name="label" translatable="yes">About</property>
+            <property name="label" translatable="yes">Sobre</property>
           </object>
         </child>
       </object>
@@ -41,7 +41,7 @@
             <property name="layout_style">start</property>
             <child>
               <object class="GtkButton" id="closebutton">
-                <property name="label" translatable="yes">Close</property>
+                <property name="label" translatable="yes">Fechar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -66,8 +66,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">		Plank-adp:								
-			Developed by Matheus Ricci.	
-			Source code: https://github.com/matricci/plank-adp		
+			Desenvolvido por Matheus Ricci.	
+			Código fonte: https://github.com/matricci/plank-adp		
 	</property>
           </object>
           <packing>
@@ -106,7 +106,7 @@
         <property name="show_close_button">True</property>
         <child>
           <object class="GtkButton" id="aboutbutton">
-            <property name="label" translatable="yes">About</property>
+            <property name="label" translatable="yes">Sobre</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -152,7 +152,7 @@
                 <property name="margin_right">10</property>
                 <property name="margin_top">10</property>
                 <property name="margin_bottom">5</property>
-                <property name="label" translatable="yes">Select an image:
+                <property name="label" translatable="yes">Selecione uma imagem para usar de Wallpaper:
 </property>
               </object>
               <packing>
@@ -170,7 +170,7 @@
                 <property name="margin_bottom">10</property>
                 <property name="create_folders">False</property>
                 <property name="filter">filefilter1</property>
-                <property name="title" translatable="yes">Select an image:</property>
+                <property name="title" translatable="yes">Selecione um imagem:</property>
                 <signal name="file-activated" handler="filechooser_file_activated" swapped="no"/>
               </object>
               <packing>
@@ -208,7 +208,7 @@
             <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkButton" id="button">
-                <property name="label" translatable="yes">Apply</property>
+                <property name="label" translatable="yes">Aplicar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -225,7 +225,7 @@
             </child>
             <child>
               <object class="GtkButton" id="cancelbutton">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label" translatable="yes">Cancelar</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
