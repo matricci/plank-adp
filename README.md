@@ -1,4 +1,8 @@
-## Scripts to match the color of plank with the background, to simulate the blur, but is lighweight.
+# Plank-adp
+Script to match the color of the plank with the background.
+
+## How does it work?
+by cropping the image in the area that the dock will sit, and getting the average color, it roughly emulates some kind of a blur. It's not a real blur!
 
 ## DEPENDS 
 	Python-pip
@@ -7,13 +11,8 @@
 	Python Gobject
 	Python Pillow
 
-## BEFORE INSTALL
-To run, you will need Gtk3.18. Only works with MATE, Gnome and Patheon Shell (ElementaryOS).
 
-## MANUAL
-To install, run the "installer.sh".
-In case of troubles, or any doubts just send me a e-mail to "matricci2011@hotmail.com".
-		
-
-## Screenshot
-![Screenshot](screenshot.png)
+## Screenshots
+![Screenshot](screenshot1.png)
+![Screenshot](screenshot2.png)
+![Screenshot](screenshot3.png)
