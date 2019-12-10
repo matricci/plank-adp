@@ -10,6 +10,9 @@ by cropping the image in the area that the dock will sit, and getting the averag
 	Dconf-tools
 	Python Gobject
 	Python Pillow
+## How to install 
+
+Inside the `scripts` folder, run the `installer.sh`.
 
 
 ## Screenshots
