@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /usr/share/plank-adp/bin
+python3 form1.py

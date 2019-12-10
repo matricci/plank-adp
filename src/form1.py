@@ -35,57 +35,46 @@ class Handler():
         Gtk.main_quit()
 
     def get_theme_color(self):
-        filename = filechooser.get_uri()
+        filename = filechooser.get_uri()[7:]
         if(filename == "None"):
-            print("select an image")
-        filename_path = urllib.unquote(filename)[7:]
-        image = Image.open(filename_path)
+            print("Select an image")
+        print(filename)
+        image = Image.open(filename.replace("%20", " "))
         width, height = image.size  # Get image size
         # Get 10% of bottom image
-        num = height * 0.10
-        num2 = round(num)
-        num3 = height - num2
-        dock = int(num3)
+        dock = int(height - round(height * 0.10))
         #
         cropped_image = image.crop((0, dock, width, height))  # Cut the image
         img2 = cropped_image.resize((1, 1), Image.ANTIALIAS)  # Resize to 1x1, same as average
         color = img2.getpixel((0, 0))  # Get the color
         color2 = ('{};;{};;{};;255'.format(*color))  # Format the color to replace inside 'dock.theme'
         # Here starts the replacement part of the code ;)
-        f = open('base.theme', 'r')
-        filedata = f.read()
-        f.close()
-        newdata = filedata.replace("color", color2)
-        f = open('dock.theme', 'w')
-        f.write(newdata)
-        f.close()
+        with open('../base.theme', 'r') as f:
+            filedata = f.read()
+            newdata = filedata.replace("color", color2)
+        with open('../dock.theme', 'w') as f:
+            f.write(newdata)
 
     def set_wallpaper(self):
         if (os.environ.get("XDG_CURRENT_DESKTOP") == "MATE"):
-            print("Mate!")
-            file = urllib.unquote(filechooser.get_uri())[7:]
-            print(file)
+            file = filechooser.get_uri()[7:]
             os.system("dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file))
 
         if(os.environ.get("XDG_CURRENT_DESKTOP") == "GNOME"):
-            print("Gnome!")
             file = filechooser.get_uri()
-            print(file)
             os.system("dconf write /org/gnome/desktop/background/picture-uri \"'{}'\" ".format(file))
 
         if(os.environ.get("XDG_CURRENT_DESKTOP") == "Pantheon"):
-            print("Elementary!")
             file = filechooser.get_uri()
-            print(file)
             os.system("dconf write /org/gnome/desktop/background/picture-uri \"'{}'\" ".format(file))
 
     def set_theme(self):
         home = os.environ.get("HOME")
-        shutil.copy("dock.theme", "{}/.local/share/plank/themes/Wallpaper".format(home))
+        shutil.copy("../dock.theme", "{}/.local/share/plank/themes/Wallpaper".format(home))
 
 
 builder = Gtk.Builder()
-builder.add_from_file("form1.glade")
+builder.add_from_file("../ui/form1.glade")
 builder.connect_signals(Handler())
 window = builder.get_object("Window")
 filechooser = builder.get_object("filechooser")
