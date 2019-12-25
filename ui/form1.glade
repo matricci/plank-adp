@@ -178,7 +178,7 @@
             <property name="create_folders">False</property>
             <property name="filter">filefilter1</property>
             <property name="title" translatable="yes">Select an image:</property>
-            <signal name="file-activated" handler="filechooser_file_activated" swapped="no"/>
+            <signal name="file-set" handler="filechooser_file_set" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
