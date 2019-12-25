@@ -10,6 +10,9 @@ gi.require_version("Gtk", "3.0")
 
 
 class Handler():
+    def __init__(self, *args):
+        button.set_sensitive(False)
+
     def onDestroy(self, *args):
         Gtk.main_quit()
         quit()
@@ -17,8 +20,8 @@ class Handler():
     def on_Window_destroy(self, *args):
         Gtk.main_quit()
 
-    def filechooser_file_activated(self, widget):
-        pass
+    def filechooser_file_set(self, widget):
+        button.set_sensitive(True)
 
     def aboutbutton_clicked(self, widget):
         aboutwin.show()
@@ -27,24 +30,22 @@ class Handler():
         aboutwin.hide()
 
     def button_clicked(self, button):
-        self.set_wallpaper()
-        self.get_theme_color()
+        filename = filechooser.get_uri()
+        self.set_wallpaper(filename)
+        self.get_theme_color(filename[7:])
         self.set_theme()
 
     def cancelbutton_clicked(self, button):
         Gtk.main_quit()
 
-    def get_theme_color(self):
-        filename = filechooser.get_uri()[7:]
-        if(filename == "None"):
-            print("Select an image")
-        print(filename)
+    def get_theme_color(self, filename):
         image = Image.open(filename.replace("%20", " "))
-        width, height = image.size  # Get image size
+        # Get image size
+        width, height = image.size 
         # Get 10% of bottom image
         dock = int(height - round(height * 0.10))
-        #
-        cropped_image = image.crop((0, dock, width, height))  # Cut the image
+        # Cut the image
+        cropped_image = image.crop((0, dock, width, height))
         # Resize to 1x1, same as average
         img = cropped_image.resize((1, 1), Image.ANTIALIAS)
         # Format the color to replace inside 'dock.theme'
@@ -56,14 +57,12 @@ class Handler():
         with open('../dock.theme', 'w') as f:
             f.write(newdata)
 
-    def set_wallpaper(self):
+    def set_wallpaper(self, file):
         if (os.environ.get("XDG_CURRENT_DESKTOP") == "MATE"):
-            file = filechooser.get_uri()[7:]
             os.system(
-                "dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file))
+                "dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file[7:]))
 
         if(os.environ.get("XDG_CURRENT_DESKTOP") == "GNOME" or os.environ.get("XDG_CURRENT_DESKTOP") == "Pantheon"):
-            file = filechooser.get_uri()
             os.system(
                 "dconf write /org/gnome/desktop/background/picture-uri \"'{}'\" ".format(file))
 
@@ -74,9 +73,10 @@ class Handler():
 
 builder = Gtk.Builder()
 builder.add_from_file("../ui/form1.glade")
-builder.connect_signals(Handler())
 window = builder.get_object("Window")
 filechooser = builder.get_object("filechooser")
 aboutwin = builder.get_object("about_window")
+button = builder.get_object("button")
+builder.connect_signals(Handler())
 window.show_all()
 Gtk.main()
