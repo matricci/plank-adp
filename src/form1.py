@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 
+from gi.repository import Gtk
 from PIL import Image
 import urllib
 import shutil
 import os
 import gi
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
 
 
 class Handler():
@@ -45,32 +45,31 @@ class Handler():
         dock = int(height - round(height * 0.10))
         #
         cropped_image = image.crop((0, dock, width, height))  # Cut the image
-        img2 = cropped_image.resize((1, 1), Image.ANTIALIAS)  # Resize to 1x1, same as average
-        color = img2.getpixel((0, 0))  # Get the color
-        color2 = ('{};;{};;{};;255'.format(*color))  # Format the color to replace inside 'dock.theme'
+        # Resize to 1x1, same as average
+        img = cropped_image.resize((1, 1), Image.ANTIALIAS)
+        # Format the color to replace inside 'dock.theme'
+        color = ('{};;{};;{};;255'.format(*img.getpixel((0, 0))))
         # Here starts the replacement part of the code ;)
         with open('../base.theme', 'r') as f:
             filedata = f.read()
-            newdata = filedata.replace("color", color2)
+            newdata = filedata.replace("color", color)
         with open('../dock.theme', 'w') as f:
             f.write(newdata)
 
     def set_wallpaper(self):
         if (os.environ.get("XDG_CURRENT_DESKTOP") == "MATE"):
             file = filechooser.get_uri()[7:]
-            os.system("dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file))
+            os.system(
+                "dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file))
 
-        if(os.environ.get("XDG_CURRENT_DESKTOP") == "GNOME"):
+        if(os.environ.get("XDG_CURRENT_DESKTOP") == "GNOME" or os.environ.get("XDG_CURRENT_DESKTOP") == "Pantheon"):
             file = filechooser.get_uri()
-            os.system("dconf write /org/gnome/desktop/background/picture-uri \"'{}'\" ".format(file))
-
-        if(os.environ.get("XDG_CURRENT_DESKTOP") == "Pantheon"):
-            file = filechooser.get_uri()
-            os.system("dconf write /org/gnome/desktop/background/picture-uri \"'{}'\" ".format(file))
+            os.system(
+                "dconf write /org/gnome/desktop/background/picture-uri \"'{}'\" ".format(file))
 
     def set_theme(self):
-        home = os.environ.get("HOME")
-        shutil.copy("../dock.theme", "{}/.local/share/plank/themes/Wallpaper".format(home))
+        shutil.copy("../dock.theme",
+                    "{}/.local/share/plank/themes/Wallpaper".format(os.environ.get("HOME")))
 
 
 builder = Gtk.Builder()
