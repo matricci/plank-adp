@@ -33,12 +33,6 @@ pip3 install Pillow
 pip3 install pycairo
 pip3 install PyGobject
 
-if [ $LANG == "pt_BR.UTF-8" ];then 
-	cp -v form1.glade.pt_BR form1.glade
-
-else 
-	cp -v form1.glade.en form1.glade
-fi
 #
 path="/usr/share/plank-adp"
 sudo mkdir -v $path
@@ -49,7 +43,7 @@ sudo cp -v ../src/form1.py $path/bin
 sudo cp -v ../base.theme $path
 sudo cp -v plank-adp /usr/bin/
 sudo cp -v ../src/plank-adp.desktop /usr/share/applications/
-sudo cp -v ../ui/plank-adp.png /usr/share/icons/hicolor/128x128/
+sudo cp -v ../ui/plank-adp.svg /usr/share/icons/hicolor/128x128/
 sudo chmod a=+rwx $path
 
 # Change the theme to "Wallpaper"
