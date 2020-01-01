@@ -12,7 +12,8 @@ gi.require_version("Gtk", "3.0")
 class Handler():
     def __init__(self, *args):
         button.set_sensitive(False)
-
+    
+    # Bind signals
     def onDestroy(self, *args):
         Gtk.main_quit()
         quit()
@@ -38,6 +39,8 @@ class Handler():
     def cancelbutton_clicked(self, button):
         Gtk.main_quit()
 
+    ##
+
     def get_theme_color(self, filename):
         image = Image.open(filename.replace("%20", " "))
         # Get image size
@@ -58,6 +61,7 @@ class Handler():
             f.write(newdata)
 
     def set_wallpaper(self, file):
+        # Please redo this piece of crap using proper Gsettings 
         if (os.environ.get("XDG_CURRENT_DESKTOP") == "MATE"):
             os.system(
                 "dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file[7:]))
@@ -73,10 +77,12 @@ class Handler():
 
 builder = Gtk.Builder()
 builder.add_from_file("../ui/form1.glade")
+# Import elements from the XML ui file
 window = builder.get_object("Window")
 filechooser = builder.get_object("filechooser")
 aboutwin = builder.get_object("about_window")
 button = builder.get_object("button")
+#
 builder.connect_signals(Handler())
 window.show_all()
 Gtk.main()
