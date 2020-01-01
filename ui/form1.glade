@@ -94,7 +94,7 @@
     <property name="window_position">center</property>
     <property name="default_width">250</property>
     <property name="default_height">-1</property>
-    <property name="icon">../../../../usr/share/icons/hicolor/128x128/apps/plank-adp.png</property>
+    <property name="icon">../../../../usr/share/icons/hicolor/128x128/apps/plank-adp.svg</property>
     <property name="gravity">center</property>
     <signal name="destroy" handler="on_Window_destroy" swapped="no"/>
     <child type="titlebar">
