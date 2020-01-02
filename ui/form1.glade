@@ -88,6 +88,13 @@
       <pattern>*jpg</pattern>
     </patterns>
   </object>
+  <object class="GtkAdjustment" id="opacityadj">
+    <property name="upper">255</property>
+    <property name="value">255</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <signal name="value-changed" handler="opacityadj_value_changed" swapped="no"/>
+  </object>
   <object class="GtkWindow" id="Window">
     <property name="can_focus">False</property>
     <property name="resizable">False</property>
@@ -183,7 +190,63 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Theme opacity</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkScale">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin_left">6</property>
+                <property name="margin_bottom">6</property>
+                <property name="hexpand">True</property>
+                <property name="adjustment">opacityadj</property>
+                <property name="round_digits">1</property>
+                <property name="digits">0</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkColorButton" id="opacitydisplay">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
+                <property name="margin_bottom">6</property>
+                <property name="use_alpha">True</property>
+                <property name="rgba">rgb(0,0,0)</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>

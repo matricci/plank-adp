@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from gi.repository import Gdk
 from gi.repository import Gtk
 from PIL import Image
 import urllib
@@ -10,9 +11,12 @@ gi.require_version("Gtk", "3.0")
 
 
 class Handler():
+    opacity = 255
+    theme_color = []
+
     def __init__(self, *args):
         button.set_sensitive(False)
-    
+
     # Bind signals
     def onDestroy(self, *args):
         Gtk.main_quit()
@@ -23,6 +27,8 @@ class Handler():
 
     def filechooser_file_set(self, widget):
         button.set_sensitive(True)
+        self.get_theme_color(filechooser.get_uri()[7:])
+        self.opacityadj_value_changed()
 
     def aboutbutton_clicked(self, widget):
         aboutwin.show()
@@ -31,20 +37,30 @@ class Handler():
         aboutwin.hide()
 
     def button_clicked(self, button):
-        filename = filechooser.get_uri()
-        self.set_wallpaper(filename)
-        self.get_theme_color(filename[7:])
+        self.set_wallpaper(filechooser.get_uri())
         self.set_theme()
 
     def cancelbutton_clicked(self, button):
         Gtk.main_quit()
 
+    # This function gives the user an exemple of what the opacity will look like
+    def opacityadj_value_changed(self, adjustment='opacityadj'):
+        if self.theme_color != []:
+            (r, g, b) = self.theme_color
+            # looks like shit, I know :)
+            color = Gdk.RGBA(r / 255, g/255, b/255,
+                             (opacityadj.get_value() / 255.0))
+        else:
+            color = Gdk.RGBA(0, 0, 0, opacityadj.get_value() / 255.0)
+
+        opacitydisplay.set_rgba(color)
+        self.opacity = opacityadj.get_value()
     ##
 
     def get_theme_color(self, filename):
         image = Image.open(filename.replace("%20", " "))
         # Get image size
-        width, height = image.size 
+        width, height = image.size
         # Get 10% of bottom image
         dock = int(height - round(height * 0.10))
         # Cut the image
@@ -52,7 +68,8 @@ class Handler():
         # Resize to 1x1, same as average
         img = cropped_image.resize((1, 1), Image.ANTIALIAS)
         # Format the color to replace inside 'dock.theme'
-        color = ('{};;{};;{};;255'.format(*img.getpixel((0, 0))))
+        self.theme_color = img.getpixel((0, 0))[:3]
+        color = ('{};;{};;{};;{}'.format(*img.getpixel((0, 0)), self.opacity))
         # Here starts the replacement part of the code ;)
         with open('../base.theme', 'r') as f:
             filedata = f.read()
@@ -61,7 +78,7 @@ class Handler():
             f.write(newdata)
 
     def set_wallpaper(self, file):
-        # Please redo this piece of crap using proper Gsettings 
+        # Please redo this piece of crap using proper Gsettings
         if (os.environ.get("XDG_CURRENT_DESKTOP") == "MATE"):
             os.system(
                 "dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file[7:]))
@@ -82,6 +99,8 @@ window = builder.get_object("Window")
 filechooser = builder.get_object("filechooser")
 aboutwin = builder.get_object("about_window")
 button = builder.get_object("button")
+opacityadj = builder.get_object("opacityadj")
+opacitydisplay = builder.get_object("opacitydisplay")
 #
 builder.connect_signals(Handler())
 window.show_all()
