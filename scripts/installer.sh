@@ -43,10 +43,14 @@ sudo cp -v ../src/form1.py $path/bin
 sudo cp -v ../base.theme $path
 sudo cp -v plank-adp /usr/bin/
 sudo cp -v ../src/plank-adp.desktop /usr/share/applications/
-sudo cp -v ../ui/plank-adp.svg /usr/share/icons/hicolor/128x128/
+sudo cp -v ../ui/plank-adp.svg /usr/share/icons/hicolor/128x128/apps
 sudo chmod a=+rwx $path
+sudo chmod 0655 /usr/share/icons/hicolor/128x128/apps/plank-adp.svg
 
 # Change the theme to "Wallpaper"
 dconf write /net/launchpad/plank/docks/dock1/theme "'Wallpaper'"
 
+# post-install 
+sudo update-desktop-database /usr/share/applications/
+sudo gtk-update-icon-cache /usr/share/icons/hicolor/ -t
 
