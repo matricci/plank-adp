@@ -18,4 +18,3 @@ Inside the `scripts` folder, run the `installer.sh`.
 ## Screenshots
 ![Screenshot](screenshot1.png)
 ![Screenshot](screenshot2.png)
-![Screenshot](screenshot3.png)
