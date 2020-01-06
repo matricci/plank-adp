@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
-from gi.repository import Gdk
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio, Gdk
 from PIL import Image
 import urllib
 import shutil
-import os
 import gi
 gi.require_version("Gtk", "3.0")
 
@@ -13,6 +11,8 @@ gi.require_version("Gtk", "3.0")
 class Handler():
     opacity = 255
     theme_color = []
+    SCHEMA = 'org.gnome.desktop.background'
+    KEY = 'picture-uri'
 
     def __init__(self, *args):
         button.set_sensitive(False)
@@ -50,6 +50,7 @@ class Handler():
             # looks like shit, I know :)
             color = Gdk.RGBA(r / 255, g/255, b/255,
                              (opacityadj.get_value() / 255.0))
+            print(color)
         else:
             color = Gdk.RGBA(0, 0, 0, opacityadj.get_value() / 255.0)
 
@@ -78,14 +79,8 @@ class Handler():
             f.write(newdata)
 
     def set_wallpaper(self, file):
-        # Please redo this piece of crap using proper Gsettings
-        if (os.environ.get("XDG_CURRENT_DESKTOP") == "MATE"):
-            os.system(
-                "dconf write /org/mate/desktop/background/picture-filename \"'{}'\" " .format(file[7:]))
-
-        if(os.environ.get("XDG_CURRENT_DESKTOP") == "GNOME" or os.environ.get("XDG_CURRENT_DESKTOP") == "Pantheon"):
-            os.system(
-                "dconf write /org/gnome/desktop/background/picture-uri \"'{}'\" ".format(file))
+        gsettings = Gio.Settings.new(self.SCHEMA)
+        gsettings.set_string(self.KEY, file)        
 
     def set_theme(self):
         shutil.copy("../dock.theme",
