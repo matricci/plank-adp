@@ -79,6 +79,13 @@
       </object>
     </child>
   </object>
+  <object class="GtkAdjustment" id="borderadj">
+    <property name="upper">100</property>
+    <property name="value">6</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <signal name="value-changed" handler="borderadj_value_changed" swapped="no"/>
+  </object>
   <object class="GtkFileFilter" id="filefilter1">
     <mime-types>
       <mime-type>image/jpg</mime-type>
@@ -101,7 +108,7 @@
     <property name="can_focus">False</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
-    <property name="default_width">250</property>
+    <property name="default_width">400</property>
     <property name="default_height">-1</property>
     <property name="icon">usr/share/icons/hicolor/128x128/apps/plank-adp.svg</property>
     <property name="gravity">center</property>
@@ -234,7 +241,6 @@
                 <property name="receives_default">True</property>
                 <property name="margin_left">6</property>
                 <property name="margin_right">6</property>
-                <property name="margin_bottom">6</property>
                 <property name="use_alpha">True</property>
                 <property name="rgba">rgb(0,0,0)</property>
               </object>
@@ -248,6 +254,35 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Border Radius:</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScale">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="margin_left">6</property>
+            <property name="margin_right">6</property>
+            <property name="margin_bottom">6</property>
+            <property name="adjustment">borderadj</property>
+            <property name="round_digits">0</property>
+            <property name="digits">0</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>

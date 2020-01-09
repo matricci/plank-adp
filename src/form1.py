@@ -5,6 +5,7 @@ from PIL import Image
 import urllib
 import shutil
 import gi
+import os
 gi.require_version("Gtk", "3.0")
 
 
@@ -38,10 +39,14 @@ class Handler():
 
     def button_clicked(self, button):
         self.set_wallpaper(filechooser.get_uri())
+        self.get_theme_color(filechooser.get_uri()[7:])
         self.set_theme()
 
     def cancelbutton_clicked(self, button):
         Gtk.main_quit()
+
+    def borderadj_value_changed(self, borderadj):
+        print(borderadj.get_value())
 
     # This function gives the user an exemple of what the opacity will look like
     def opacityadj_value_changed(self, adjustment='opacityadj'):
@@ -71,12 +76,16 @@ class Handler():
         # Format the color to replace inside 'dock.theme'
         self.theme_color = img.getpixel((0, 0))[:3]
         color = ('{};;{};;{};;{}'.format(*img.getpixel((0, 0)), self.opacity))
+        border_radius = int(borderadj.get_value())
         # Here starts the replacement part of the code ;)
         with open('../base.theme', 'r') as f:
             filedata = f.read()
-            newdata = filedata.replace("color", color)
+            # first replace on the base the color that will be applied
+            newcolor = filedata.replace("color", color)
+            # then replace with the choosen border radius
+            newbdrd = newcolor.replace("border_radius", str(border_radius))
         with open('../dock.theme', 'w') as f:
-            f.write(newdata)
+            f.write(newbdrd)
 
     def set_wallpaper(self, file):
         gsettings = Gio.Settings.new(self.SCHEMA)
@@ -85,7 +94,6 @@ class Handler():
     def set_theme(self):
         shutil.copy("../dock.theme",
                     "{}/.local/share/plank/themes/Wallpaper".format(os.environ.get("HOME")))
-
 
 builder = Gtk.Builder()
 builder.add_from_file("../ui/form1.glade")
@@ -96,6 +104,7 @@ aboutwin = builder.get_object("about_window")
 button = builder.get_object("button")
 opacityadj = builder.get_object("opacityadj")
 opacitydisplay = builder.get_object("opacitydisplay")
+borderadj = builder.get_object("borderadj")
 #
 builder.connect_signals(Handler())
 window.show_all()
