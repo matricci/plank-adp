@@ -103,8 +103,17 @@
     <property name="page_increment">10</property>
     <signal name="value-changed" handler="opacityadj_value_changed" swapped="no"/>
   </object>
+  <object class="GtkAdjustment" id="top_paddingadj">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkWindow" id="Window">
     <property name="can_focus">False</property>
+    <property name="margin_left">6</property>
+    <property name="margin_right">6</property>
+    <property name="margin_top">6</property>
+    <property name="margin_bottom">6</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="default_width">400</property>
@@ -165,6 +174,9 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">6</property>
+        <property name="margin_right">6</property>
+        <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
@@ -178,7 +190,6 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
                 <property name="halign">center</property>
-                <property name="margin_left">6</property>
                 <property name="draw_indicator">True</property>
                 <signal name="toggled" handler="matchcheck_toggled" swapped="no"/>
               </object>
@@ -194,7 +205,6 @@
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
                 <property name="valign">end</property>
-                <property name="margin_right">6</property>
                 <property name="margin_top">10</property>
                 <property name="margin_bottom">10</property>
                 <property name="create_folders">False</property>
@@ -276,8 +286,6 @@
           <object class="GtkScale">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="margin_left">6</property>
-            <property name="margin_bottom">6</property>
             <property name="hexpand">True</property>
             <property name="adjustment">opacityadj</property>
             <property name="round_digits">1</property>
@@ -305,9 +313,6 @@
           <object class="GtkScale">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="margin_left">6</property>
-            <property name="margin_right">6</property>
-            <property name="margin_bottom">6</property>
             <property name="adjustment">borderadj</property>
             <property name="round_digits">0</property>
             <property name="digits">0</property>
@@ -316,6 +321,64 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_top">7</property>
+            <property name="label" translatable="yes">Padding:</property>
+            <attributes>
+              <attribute name="weight" value="bold"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkSpinButton">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">end</property>
+                <property name="max_length">3</property>
+                <property name="caps_lock_warning">False</property>
+                <property name="input_purpose">number</property>
+                <property name="adjustment">top_paddingadj</property>
+                <property name="numeric">True</property>
+                <property name="value">100</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">Top:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
           </packing>
         </child>
       </object>

@@ -66,8 +66,8 @@ class Handler():
             filechooser.set_sensitive(False)
             button.set_sensitive(True)
 
-
     # This function gives the user an exemple of what the opacity will look like
+
     def opacityadj_value_changed(self, adjustment='opacityadj'):
         if self.theme_color != []:
             if self.theme_color[0] == "rgb":
@@ -92,7 +92,9 @@ class Handler():
 
     def get_theme_color(self, filename):
         border_radius = int(borderadj.get_value())
-        ## Check if user has selected match wallpaper or not
+        top_padding = -13.00 + int(top_paddingadj.get_value()) / 5.555555556
+
+        # Check if user has selected match wallpaper or not
         if matchcheck.get_active() == True:
             image = Image.open(filename.replace("%20", " "))
             # Get image size
@@ -120,8 +122,10 @@ class Handler():
             newcolor = filedata.replace("color", color)
             # then replace with the choosen border radius
             newbdrd = newcolor.replace("border_radius", str(border_radius))
+            # Finally replace with the Top Padding
+            newtppd = newbdrd.replace("top_padding", str(top_padding))
         with open('../dock.theme', 'w') as f:
-            f.write(newbdrd)
+            f.write(newtppd)
 
     def set_wallpaper(self, file):
         gsettings = Gio.Settings.new(self.SCHEMA)
@@ -143,6 +147,7 @@ opacityadj = builder.get_object("opacityadj")
 opacitydisplay = builder.get_object("opacitydisplay")
 borderadj = builder.get_object("borderadj")
 matchcheck = builder.get_object("matchcheck")
+top_paddingadj = builder.get_object("top_paddingadj")
 #
 builder.connect_signals(Handler())
 window.show_all()
