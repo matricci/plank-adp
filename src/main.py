@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import utils
 from gi.repository import Gtk, Gio, Gdk
 from PIL import Image
 import urllib
@@ -12,8 +13,6 @@ gi.require_version("Gtk", "3.0")
 class Handler():
     opacity = 255
     theme_color = []
-    SCHEMA = 'org.gnome.desktop.background'
-    KEY = 'picture-uri'
 
     def __init__(self, *args):
         button.set_sensitive(False)
@@ -42,12 +41,12 @@ class Handler():
 
     def button_clicked(self, button):
         if matchcheck.get_active() == True:
-            self.set_wallpaper(filechooser.get_uri())
+            utils.set_wallpaper(filechooser.get_uri())
             self.get_theme_color(filechooser.get_uri()[7:])
-            self.set_theme()
+            utils.set_theme()
         else:
             self.get_theme_color("none")
-            self.set_theme()
+            utils.set_theme()
 
     def cancelbutton_clicked(self, button):
         Gtk.main_quit()
@@ -126,15 +125,7 @@ class Handler():
             newtppd = newbdrd.replace("top_padding", str(top_padding))
         with open('../dock.theme', 'w') as f:
             f.write(newtppd)
-
-    def set_wallpaper(self, file):
-        gsettings = Gio.Settings.new(self.SCHEMA)
-        gsettings.set_string(self.KEY, file)
-
-    def set_theme(self):
-        shutil.copy("../dock.theme",
-                    "{}/.local/share/plank/themes/Wallpaper".format(os.environ.get("HOME")))
-
+    
 
 builder = Gtk.Builder()
 builder.add_from_file("../ui/form1.glade")

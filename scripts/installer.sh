@@ -39,7 +39,8 @@ sudo mkdir -v $path
 sudo mkdir -v $path/ui
 sudo mkdir -v $path/bin
 sudo cp -v ../ui/form1.glade $path/ui 
-sudo cp -v ../src/form1.py $path/bin
+sudo cp -v ../src/main.py $path/bin
+sudo cp -v ../src/utils.py $path/bin
 sudo cp -v ../base.theme $path
 sudo cp -v plank-adp /usr/bin/
 sudo cp -v ../src/plank-adp.desktop /usr/share/applications/
