@@ -14,10 +14,11 @@ def get_desktop_environment():
 def set_theme():
     try:
         shutil.copy("../dock.theme",
-                    "{}/.local/share/plank/themes/Wallpaper".format(os.environ.get("HOME")))
+                    "{}/.local/share/plank/themes/Wallpaper/dock.theme".format(os.environ.get("HOME")))
     except FileNotFoundError:
-        print("Plank theme folder not found")
-        
+        os.system("mkdir -p ~/.local/share/plank/themes/Wallpaper")
+        print("The theme folderhas been created, try again")
+
 
 def set_wallpaper(file):
     env = get_desktop_environment()
@@ -27,5 +28,3 @@ def set_wallpaper(file):
     elif env == "MATE":
         gsettings = Gio.Settings.new("org.mate.background")
         gsettings.set_string("picture-filename", file[7:])
-
-        
