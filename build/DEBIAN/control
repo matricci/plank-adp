@@ -1,10 +1,10 @@
 Package: plank-adp
-Version: 1.0
+Version: 1.0.1
 Section: custom
 Priority: optional
 Architecture: all
 Essential: no
-Installed-Size: 1024
+Installed-Size: 9900
 Depends: plank, python3, python3-pil, python3-gi, python3-gi-cairo
 Maintainer: Matheus Ricci	
-Description: Test build
+Description: https://github.com/matricci/plank-adp
