@@ -11,13 +11,9 @@ def get_desktop_environment():
     return env
 
 
-def set_theme():
-    try:
-        shutil.copy("../dock.theme",
-                    "{}/.local/share/plank/themes/Wallpaper/dock.theme".format(os.environ.get("HOME")))
-    except FileNotFoundError:
+def check_theme_folder():
+    if(os.path.exists('/{}/.local/share/plank/themes/Wallpaper/'.format(os.environ.get('HOME'))) == False):
         os.system("mkdir -p ~/.local/share/plank/themes/Wallpaper")
-        print("The theme folderhas been created, try again")
 
 
 def set_wallpaper(file):
