@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for HOME_U in /home/*?; do
+    mkdir -p $HOME_U/.local/share/plank/themes/Wallpaper/
+done
+update-desktop-database /usr/share/applications/
+gtk-update-icon-cache /usr/share/icons/hicolor/ -t
