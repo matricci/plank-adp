@@ -15,6 +15,7 @@ class Handler():
     theme_color = []
 
     def __init__(self, *args):
+        utils.check_theme_folder()
         button.set_sensitive(False)
         matchcheck.set_active(True)
         opacitydisplay.set_sensitive(False)
@@ -43,10 +44,8 @@ class Handler():
         if matchcheck.get_active() == True:
             utils.set_wallpaper(filechooser.get_uri())
             self.get_theme_color(filechooser.get_uri()[7:])
-            utils.set_theme()
         else:
             self.get_theme_color("none")
-            utils.set_theme()
 
     def cancelbutton_clicked(self, button):
         Gtk.main_quit()
@@ -123,7 +122,7 @@ class Handler():
             newbdrd = newcolor.replace("border_radius", str(border_radius))
             # Finally replace with the Top Padding
             newtppd = newbdrd.replace("top_padding", str(top_padding))
-        with open('../dock.theme', 'w') as f:
+        with open("{}/.local/share/plank/themes/Wallpaper/dock.theme".format(os.environ.get("HOME")), 'w') as f:
             f.write(newtppd)
     
 
