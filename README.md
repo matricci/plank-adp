@@ -1,20 +1,28 @@
 # Plank-adp
-Script to match the color of the plank with the background.
-
-## How does it work?
-by cropping the image in the area that the dock will sit, and getting the average color, it roughly emulates some kind of a blur. It's not a real blur!
-
-## DEPENDS 
-	Python-pip
-	Python3 (Of course, genius)
-	Dconf-tools
-	Python Gobject
-	Python Pillow
-## How to install 
-
-Inside the `scripts` folder, run the `installer.sh`.
+A tool to generate Plank theme, based on the settings that you can input!
 
 
-## Screenshots
-![Screenshot](screenshot1.png)
-![Screenshot](screenshot2.png)
+## Preview: 
+![preview](preview.gif)
+
+## Features:
+ * Set background color based on Wallpaper (only works with Gnome, Pantheon and MATE);
+ * Set background color manually;
+ * Set background opacity;
+ * Slider for top border-radius;
+ * Set top padding.
+
+## [Download](https://github.com/matricci/plank-adp/releases/latest)
+
+## Manual installation
+### Dependencies:
+* Python 3;
+* Python pip;
+
+
+Inside the `scripts` folder, run the `installer.sh`. This script will download the rest of the dependencies automatically, if python pip is installed.
+
+### Uninstall:
+
+Go to `scripts` folder, then run `uninstall.sh`
+
