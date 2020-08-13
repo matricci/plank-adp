@@ -16,7 +16,7 @@ def check_theme_folder():
     path = '/{}/.local/share/plank/themes/Wallpaper/'.format(
         os.environ.get('HOME'))
     if(os.path.exists(path) is False):
-        os.mkdir(path)kdir - p ~/.local/share/plank/themes/Wallpaper")
+        os.mkdir(path)
 
 
 def set_wallpaper(file):
