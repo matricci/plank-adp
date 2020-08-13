@@ -41,7 +41,7 @@ class Handler():
         aboutwin.hide()
 
     def button_clicked(self, button):
-        if matchcheck.get_active() == True:
+        if matchcheck.get_active() is True:
             utils.set_wallpaper(filechooser.get_uri())
             self.get_theme_color(filechooser.get_uri()[7:])
         else:
@@ -51,10 +51,10 @@ class Handler():
         Gtk.main_quit()
 
     def matchcheck_toggled(self, matchcheck):
-        if matchcheck.get_active() == True:
+        if matchcheck.get_active() is True:
             opacitydisplay.set_sensitive(False)
             filechooser.set_sensitive(True)
-            if filechooser.get_uri() != None:
+            if filechooser.get_uri() is not None:
                 button.set_sensitive(True)
             else:
                 button.set_sensitive(False)
@@ -93,7 +93,7 @@ class Handler():
         top_padding = -13.00 + int(top_paddingadj.get_value()) / 5.555555556
 
         # Check if user has selected match wallpaper or not
-        if matchcheck.get_active() == True:
+        if matchcheck.get_active() is True:
             image = Image.open(filename.replace("%20", " "))
             # Get image size
             width, height = image.size
