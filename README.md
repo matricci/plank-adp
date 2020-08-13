@@ -1,4 +1,4 @@
-# Plank-adp
+# Plank-adp [![CodeFactor](https://www.codefactor.io/repository/github/matricci/plank-adp/badge)](https://www.codefactor.io/repository/github/matricci/plank-adp)
 A tool to generate Plank theme, based on the settings that you can input!
 
 
